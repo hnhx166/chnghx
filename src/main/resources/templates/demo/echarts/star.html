@@ -1,0 +1,231 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	>
+<head>
+    <meta charset="UTF-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no;" name="viewport"/>
+    <title>Title</title>
+    <script src="/js/jquery/jquery-3.2.1.min.js"></script>
+    <script src="/js/echarts/echarts.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body, html {
+            width: 100%;
+            height: 100%;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        #main {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<canvas id="myCanvas" width="1550" height="800" style="border:1px solid red;">000</canvas>
+<!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
+<div id="main"></div><!--截屏目标区域-->
+
+<img src="" alt="png" class="imgs" /><!--转换成图片，展示目标-->
+<script th:inline="javascript">
+    $(function () {
+        $('.imgs').hide();
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+        // 指定图表的配置项和数据
+        var option = {
+            title: {
+                //text: '体质'
+            },
+            tooltip: {
+                trigger: 'axis',
+                fontSize:30
+            },
+            radar: [
+                {
+                    indicator: [[${indicator}]],
+                    center: ['20%', '50%'],//控制七芒星的位置
+                    splitArea: {
+                        show: false
+                    },
+                     radius: 200,//控制七芒星的大小
+                    name: {
+                        textStyle: {
+                            fontSize:40,//控制字体大小
+                            color:'#000'//控制字体颜色
+                        }
+                    },
+                    axisLine: {
+                        lineStyle: {
+                            color: 'rgba(0,0,0,0.5)',//控制线的颜色
+                            width:1 //控制线的宽度
+                        }
+                    },
+                    splitLine: {
+                        lineStyle: {
+                            color: 'rgba(0,0,0,0.5)',//控制线的颜色
+                            width:1 //控制线的宽度
+                        }
+                    }
+                }
+            ],
+            series: [
+                {
+                    type: 'radar',
+                    tooltip: {
+                        trigger: 'item'
+                    },
+                    itemStyle: {
+                        normal: {
+                            areaStyle: {
+                                type: 'default',
+                                color: "#FF7F66"
+                            }
+                        }
+                    },
+                    data: [
+                        {
+                            value: [[${userData}]],//用户体质的数据
+                            name: '您的体质',
+                        }
+                    ]
+                },
+                {
+                    type: 'radar',
+                    tooltip: {
+                        trigger: 'item'
+                    },
+                    itemStyle: {
+                        normal: {
+                            areaStyle: {
+                                type: 'default',
+                                color: "#66E6FF"
+                            }
+                        }
+                    },
+                    data: [
+                        {
+                            value: [[${standardData}]], //正常体质的数据
+                            name: '正常体质',
+                        }
+                    ]
+                }
+            ]
+        };
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+        setTimeout(function () {
+        	//画布
+            var c=document.getElementById("myCanvas");
+            var cxt=c.getContext("2d");
+            //var img2 = new Image();
+            //img2.src = "https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=gQEM8TwAAAAAAAAAAS5odHRwOi8vd2VpeGluLnFxLmNvbS9xLzAyNFdBdjRpcmhkSWkxMDAwMGcwN04AAgRPlQJbAwQAAAAA";
+            //cxt.drawImage(img2, 300, 0);
+            
+            var i = myChart.getDataURL({
+                type: 'png',  //导出图片的格式
+                //backgroundColor: 'white'
+                // 导出的图片分辨率比例，默认为 1。
+                //pixelRatio: number
+            });
+           // $('.imgs').show().attr('src', i);
+          
+            var img = new Image();
+            img.src = i;
+            cxt.drawImage(img, 0, 0);
+        }, 500); 
+        
+        
+        //画布
+        var c=document.getElementById("myCanvas");
+        var cxt=c.getContext("2d");
+        var img2 = new Image();
+        img2.crossOrigin = 'Anonymous'; //解决跨域问题
+        img2.src = "https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=gQEM8TwAAAAAAAAAAS5odHRwOi8vd2VpeGluLnFxLmNvbS9xLzAyNFdBdjRpcmhkSWkxMDAwMGcwN04AAgRPlQJbAwQAAAAA";
+        cxt.drawImage(img2,0,0, 300, 0);
+        
+        var i = myChart.getDataURL({
+            type: 'png',  //导出图片的格式
+            //backgroundColor: 'white'
+            // 导出的图片分辨率比例，默认为 1。
+            //pixelRatio: number
+        });
+       // $('.imgs').show().attr('src', i);
+      
+        var img = new Image();
+        img.src = i;
+        cxt.drawImage(img, 0, 0);
+        
+        
+     /*    
+      
+      //底图
+        var img=new Image()
+        //img.src="/images/poster/background.jpg";
+      	img.src = myChart.getDataURL({
+            type: 'png',  //导出图片的格式
+            //backgroundColor: 'white'
+            // 导出的图片分辨率比例，默认为 1。
+            //pixelRatio: number
+        });
+      	
+        cxt.drawImage(img, 0 ,0);
+        
+        setTimeout(function () {
+	      	
+        }, 500); */
+    });
+    
+    
+
+    
+    
+</script>
+
+<script> 
+function hecheng(){ 
+    draw(function(){ 
+        document.getElementById('imgBox').innerHTML='<p style="padding:10px 0">合成图片成功！可以鼠标另存图片查看我是否是一张图片~~！</p><img src="'+base64[0]+'">'; 
+    })     
+} 
+ 
+var data=['img1.png','img2.png','img3.png','img4.png', 'https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=gQEM8TwAAAAAAAAAAS5odHRwOi8vd2VpeGluLnFxLmNvbS9xLzAyNFdBdjRpcmhkSWkxMDAwMGcwN04AAgRPlQJbAwQAAAAA'],base64=[]; 
+function draw(fn){ 
+    var c=document.createElement('canvas'), 
+        ctx=c.getContext('2d'), 
+        len=data.length; 
+    c.width=290; 
+    c.height=290; 
+    ctx.rect(0,0,c.width,c.height); 
+    ctx.fillStyle='#fff'; 
+    ctx.fill(); 
+    function drawing(n){ 
+        if(n<len){ 
+            var img=new Image; 
+            //img.crossOrigin = 'Anonymous'; //解决跨域 
+            img.src=data[n]; 
+            img.onload=function(){ 
+                ctx.drawImage(img,0,0,290,290); 
+                drawing(n+1);//递归 
+            } 
+        }else{ 
+            //保存生成作品图片 
+            base64.push(c.toDataURL("image/jpeg",0.8)); 
+            //alert(JSON.stringify(base64)); 
+            fn(); 
+        } 
+    } 
+    drawing(0); 
+} 
+</script>
+</body>
+</html>

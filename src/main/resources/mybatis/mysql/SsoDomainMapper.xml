@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chnghx.dao.mysql.mapper.SsoDomainMapper" >
+  <resultMap id="BaseResultMap" type="com.chnghx.dao.mysql.entity.SsoDomain" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="MAIN_DOMAIN" property="mainDomain" jdbcType="VARCHAR" />
+    <result column="SECOND_DOMAIN" property="secondDomain" jdbcType="VARCHAR" />
+    <result column="GROUP_TYPE" property="groupType" jdbcType="INTEGER" />
+    <result column="PLATFORM_TYPE" property="platformType" jdbcType="INTEGER" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="OTHER_ONE" property="otherOne" jdbcType="VARCHAR" />
+    <result column="OTHER_TWO" property="otherTwo" jdbcType="VARCHAR" />
+    <result column="OTHER_THREE" property="otherThree" jdbcType="VARCHAR" />
+    <result column="OTHER_FOUR" property="otherFour" jdbcType="VARCHAR" />
+    <result column="ROLE_TYPE" property="roleType" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, MAIN_DOMAIN, SECOND_DOMAIN, GROUP_TYPE, PLATFORM_TYPE, CREATE_TIME, UPDATE_TIME, 
+    OTHER_ONE, OTHER_TWO, OTHER_THREE, OTHER_FOUR, ROLE_TYPE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from SSO_DOMAIN
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from SSO_DOMAIN
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.chnghx.dao.mysql.entity.SsoDomain" >
+    insert into SSO_DOMAIN (ID, MAIN_DOMAIN, SECOND_DOMAIN, 
+      GROUP_TYPE, PLATFORM_TYPE, CREATE_TIME, 
+      UPDATE_TIME, OTHER_ONE, OTHER_TWO, 
+      OTHER_THREE, OTHER_FOUR, ROLE_TYPE
+      )
+    values (#{id,jdbcType=BIGINT}, #{mainDomain,jdbcType=VARCHAR}, #{secondDomain,jdbcType=VARCHAR}, 
+      #{groupType,jdbcType=INTEGER}, #{platformType,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{otherOne,jdbcType=VARCHAR}, #{otherTwo,jdbcType=VARCHAR}, 
+      #{otherThree,jdbcType=VARCHAR}, #{otherFour,jdbcType=VARCHAR}, #{roleType,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.chnghx.dao.mysql.entity.SsoDomain" >
+    insert into SSO_DOMAIN
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="mainDomain != null" >
+        MAIN_DOMAIN,
+      </if>
+      <if test="secondDomain != null" >
+        SECOND_DOMAIN,
+      </if>
+      <if test="groupType != null" >
+        GROUP_TYPE,
+      </if>
+      <if test="platformType != null" >
+        PLATFORM_TYPE,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="otherOne != null" >
+        OTHER_ONE,
+      </if>
+      <if test="otherTwo != null" >
+        OTHER_TWO,
+      </if>
+      <if test="otherThree != null" >
+        OTHER_THREE,
+      </if>
+      <if test="otherFour != null" >
+        OTHER_FOUR,
+      </if>
+      <if test="roleType != null" >
+        ROLE_TYPE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="mainDomain != null" >
+        #{mainDomain,jdbcType=VARCHAR},
+      </if>
+      <if test="secondDomain != null" >
+        #{secondDomain,jdbcType=VARCHAR},
+      </if>
+      <if test="groupType != null" >
+        #{groupType,jdbcType=INTEGER},
+      </if>
+      <if test="platformType != null" >
+        #{platformType,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="otherOne != null" >
+        #{otherOne,jdbcType=VARCHAR},
+      </if>
+      <if test="otherTwo != null" >
+        #{otherTwo,jdbcType=VARCHAR},
+      </if>
+      <if test="otherThree != null" >
+        #{otherThree,jdbcType=VARCHAR},
+      </if>
+      <if test="otherFour != null" >
+        #{otherFour,jdbcType=VARCHAR},
+      </if>
+      <if test="roleType != null" >
+        #{roleType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chnghx.dao.mysql.entity.SsoDomain" >
+    update SSO_DOMAIN
+    <set >
+      <if test="mainDomain != null" >
+        MAIN_DOMAIN = #{mainDomain,jdbcType=VARCHAR},
+      </if>
+      <if test="secondDomain != null" >
+        SECOND_DOMAIN = #{secondDomain,jdbcType=VARCHAR},
+      </if>
+      <if test="groupType != null" >
+        GROUP_TYPE = #{groupType,jdbcType=INTEGER},
+      </if>
+      <if test="platformType != null" >
+        PLATFORM_TYPE = #{platformType,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="otherOne != null" >
+        OTHER_ONE = #{otherOne,jdbcType=VARCHAR},
+      </if>
+      <if test="otherTwo != null" >
+        OTHER_TWO = #{otherTwo,jdbcType=VARCHAR},
+      </if>
+      <if test="otherThree != null" >
+        OTHER_THREE = #{otherThree,jdbcType=VARCHAR},
+      </if>
+      <if test="otherFour != null" >
+        OTHER_FOUR = #{otherFour,jdbcType=VARCHAR},
+      </if>
+      <if test="roleType != null" >
+        ROLE_TYPE = #{roleType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chnghx.dao.mysql.entity.SsoDomain" >
+    update SSO_DOMAIN
+    set MAIN_DOMAIN = #{mainDomain,jdbcType=VARCHAR},
+      SECOND_DOMAIN = #{secondDomain,jdbcType=VARCHAR},
+      GROUP_TYPE = #{groupType,jdbcType=INTEGER},
+      PLATFORM_TYPE = #{platformType,jdbcType=INTEGER},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      OTHER_ONE = #{otherOne,jdbcType=VARCHAR},
+      OTHER_TWO = #{otherTwo,jdbcType=VARCHAR},
+      OTHER_THREE = #{otherThree,jdbcType=VARCHAR},
+      OTHER_FOUR = #{otherFour,jdbcType=VARCHAR},
+      ROLE_TYPE = #{roleType,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

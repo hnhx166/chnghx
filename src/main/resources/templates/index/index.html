@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="common/layout/layout">
+
+<div th:fragment="content">
+	<!-- 自己的内容 -->
+	<div class="container" id="app">{{message}}</div>
+	<div id="tips_test">
+		<span v-bind:title="message">鼠标悬停几秒钟查看此处动态绑定的提示信息！</span>
+	</div>
+	<div id="app3">
+		<p v-if="seen">显示出来了</p>
+	</div>
+	<div id="app-4">
+		<ol>
+			<li v-for="data in listData">{{ data.k }}</li>
+		</ol>
+	</div>
+
+	<script type="text/javascript">
+		var app = new Vue({
+			el : '#app',
+			data : {
+				message : 'welcom to my sit. 你好！'
+			}
+		})
+
+		var app2 = new Vue({
+			el : "#tips_test",
+			data : {
+				message : "气泡提示"
+			}
+		});
+
+		new Vue({
+			el : "#app3",
+			data : {
+				seen : false
+			}
+		});
+		
+		var app4 = new Vue({
+			el : "#app-4",
+			data : {
+				listData : []
+			},
+			filters: {
+				
+			},
+			mountend : function(){
+				this.$nextTick(function(){
+					cartView()
+				})
+			},
+			methods :{
+				cartView : function(){
+					var _this = this;
+					this.$http.get("http://localhost/listData.json").then(function(res){
+						console.log("*************************");
+						console.log(res);
+						_this.listData = res.list;
+					});
+				}
+			}
+			
+		});
+		
+		//app4.listData.push({ k: '新项目' });
+		
+		
+		
+		
+	</script>
+</div>
+</html>

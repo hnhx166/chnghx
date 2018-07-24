@@ -1,0 +1,169 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="renderer" content="webkit" />
+<title>首页</title>
+<meta name="description" content="www.chnghx.com" />
+<meta name="keywords" content="www.chnghx.com" />
+
+<!-- Bootstrap 核心 CSS 文件 -->
+<link th:href="@{/js/bootstrap-3.3.7/css/bootstrap.min.css}" rel="stylesheet" />
+<link th:href="@{/js/bootstrap-3.3.7/css/bootstrapValidator.min.css}" style="stylesheet" />
+<!-- Bootstrap主题文件（一般不使用） -->
+<link th:href="@{/js/bootstrap-3.3.7/css/bootstrap-theme.min.css}" rel="stylesheet" />
+
+<!-- 自定义样式 -->
+<!-- <link th:href="@{/css/nav/menu.css}" media="screen" rel="stylesheet" />
+<link th:href="@{/css/base/base.css}" media="screen" rel="stylesheet" /> -->
+
+<!-- jQuery文件。在bootstrap.min.js 之前引入 -->
+<script src="/js/jquery/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="/js/echarts/echarts.min.js"></script>
+<!-- Bootstrap 核心 JavaScript 文件 -->
+<script type="text/javascript" src="/js/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap-3.3.7/js/bootstrapValidator.min.js"></script>
+<script src="/js/jquery/jquery-ui.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body style="overflow-y: hidden">
+	<div>
+		<!-- 头部 -->
+		<div id="header">
+			<!-- 头部导航菜单栏  -->
+			<!-- <ul class="menu boxed clearfix">
+				<li><a href="/"><i class="menu-icon menu-icon-1"></i>Home</a></li>
+				<li><a href="javascript:void(0);"><i
+						class="menu-icon menu-icon-2"></i>Demo</a>
+					<ul>
+						<li><a href="/video">JQuery video 播放插件 </a></li>
+						<li><a href="javascript:void(0);">H5调用相机</a>
+							<ul>
+								<li><a href="/camera/photo">file标签调相机</a></li>
+								<li><a href="/camera/pt">mediaDevices调相机</a></li>
+							</ul></li>
+						<li><a href="/socket/chat">websocket 聊天</a></li>
+						<li><a href="javascript:void(0);">echarts图表</a>
+							<ul>
+								<li><a href="/charts/line-x">基本线型图表</a></li>
+								<li><a href="/charts/line-mutil-x">Multiple X Axes</a></li>
+								<li><a href="/charts/line-y">Line Y Category</a></li>
+								<li><a href="/charts/tree-x">tree-x</a></li>
+								<li><a href="/charts/tree-y">tree-y</a></li>
+								<li><a href="/charts/tree-mutil">tree-mutil</a></li>
+							</ul></li>
+						<li><a href="javascript:void(0);">编辑器</a>
+							<ul>
+								<li><a href="/editor/ckeditor">ckeditor</a></li>
+							</ul></li>
+						<li><a href="javascript:void(0);">菜单</a></li>
+						<li><a href="javascript:void(0);">菜单</a></li>
+						<li><a href="javascript:void(0);">菜单</a></li>
+					</ul></li>
+				<li><a href="javascript:void(0);"><i
+						class="menu-icon menu-icon-3"></i>文件上传</a>
+					<ul>
+						<li><a href="/upload">单文件上传</a></li>
+						<li><a href="/upload/multifile">多文件上传</a></li>
+						<li><a href="javascript:void(0);">Service 3</a></li>
+					</ul></li>
+				<li><a href="javascript:void(0);"><i
+						class="menu-icon menu-icon-4"></i>Reservations</a>
+					<ul>
+						<li><a href="javascript:void(0);">5 Stars Hotel</a>
+							<ul>
+								<li><a href="#">5- Single Room</a></li>
+								<li><a href="#">5- Double Room</a></li>
+								<li><a href="#">5- Triple Room</a></li>
+							</ul></li>
+						<li><a href="javascript:void(0);">4 Stars Hotel</a>
+							<ul>
+								<li><a href="#">4- Single Room</a></li>
+								<li><a href="#">4- Double Room</a></li>
+								<li><a href="#">4- Triple Room</a></li>
+							</ul></li>
+						<li><a href="javascript:void(0);">3 Stars Hotel</a>
+							<ul>
+								<li><a href="#">3- Single Room</a></li>
+								<li><a href="#">3- Double Room</a></li>
+								<li><a href="#">3- Triple Room</a></li>
+							</ul></li>
+					</ul></li>
+				<li><a href="javascript:void(0);"><i
+						class="menu-icon menu-icon-5"></i>Restaurant</a></li>
+				<li><a href="javascript:void(0);"><i
+						class="menu-icon menu-icon-6"></i><button onclick="toReg();">注册</button><button>登录</button><button onclick="userManager();">用户管理</button></a></li>
+			</ul> -->
+
+
+			<nav class="navbar navbar-default" role="navigation">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<a class="navbar-brand" href="javascript:void(0);">chnghx</a>
+					</div>
+					<div>
+						<!--向左对齐-->
+						<ul class="nav navbar-nav navbar-left">
+							<li class="dropdown"><a href="javascript:void(0);"
+								class="dropdown-toggle" data-toggle="dropdown"> demo <b
+									class="caret"></b>
+							</a>
+								<ul class="dropdown-menu">
+									<li><a href="/echart/hexagram">维康海报六芒星</a></li>
+									<li><a href="javascript:void(0);">EJB</a></li>
+									<li><a href="javascript:void(0);">Jasper Report</a></li>
+									<li class="divider"></li>
+									<li><a href="javascript:void(0);">分离的链接</a></li>
+									<li class="divider"></li>
+									<li><a href="javascript:void(0);">另一个分离的链接</a></li>
+								</ul></li>
+						</ul>
+						<form class="navbar-form navbar-left" role="search">
+							<input type="text" class="form-control" id="searchword" name="searchword" placeholder="输入搜素内容" />
+							<button type="submit" class="btn btn-default">搜索</button>
+						</form>
+						<!-- <p class="navbar-text navbar-left">向左对齐-文本</p> -->
+						
+						
+						
+						<ul class="nav navbar-nav navbar-right">
+							<li>
+								<a href="javascript:void(0);" onclick="toReg();"><span class="glyphicon glyphicon-user"></span>注册</a>
+							</li>
+							<li>
+								<a href="javascript:void(0);" onclick="toLogin();"><span class="glyphicon glyphicon-log-in"></span>登录</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+
+		</div>
+
+		<!-- body -->
+		<div style="margin-top: 5%" th:include="this :: content"></div>
+
+		<!-- footer -->
+		<div id="footer" class="footer">
+			<hr />
+			京ICP备16004191
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+	function toReg() {
+		window.location.href = "/reg/pc_reg";
+	}
+
+	function toLogin(){
+		
+	}
+	
+	function userManager() {
+		window.location.href = "/user/list";
+	}
+</script>
+</html>
