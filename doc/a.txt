@@ -1,0 +1,3 @@
+//		NativeWebRequest webRequest = new ServletWebRequest(hrequest);
+//		Map<String, String> uriTemplateVars = (Map<String, String>) webRequest.getAttribute(HandlerMapping.URI_TEMPLATE_VARIABLES_ATTRIBUTE, RequestAttributes.SCOPE_REQUEST);
+//		System.out.println(uriTemplateVars);
