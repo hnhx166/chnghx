@@ -20,4 +20,6 @@ public interface UserMapper {
     User selectByLoginName(String loginName);
     
     List<User> selectByLoginNameAndPassword(String loginName, String password);
+    
+    List<User> getUsers(User user);
 }

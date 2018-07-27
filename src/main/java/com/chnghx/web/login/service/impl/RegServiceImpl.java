@@ -45,5 +45,10 @@ public class RegServiceImpl implements RegService {
 		return userMapper.selectByLoginNameAndPassword(loginName, password);
 	}
 
+	@Override
+	public List<User> getUsers(User user) {
+		return userMapper.getUsers(user);
+	}
+
 	
 }

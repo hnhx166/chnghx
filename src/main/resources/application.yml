@@ -115,7 +115,12 @@ mybatis:
   typeAliasesPackage: org.spring.springboot.domain
   mapperLocations: classpath:mapper/*.xml
 
-
+# 分页配置
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql
 
 #文件上传
 multipart: 
