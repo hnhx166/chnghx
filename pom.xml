@@ -296,6 +296,14 @@
 			<version>0.11.0</version>
 		</dependency>
 
+		
+		<!-- bitcoin生成助记词 -->
+		<dependency>
+			<groupId>org.bitcoinj</groupId>
+			<artifactId>bitcoinj-core</artifactId>
+			<version>0.12.2</version>
+		</dependency>
+		<!-- web3j 导出keystore -->
 		<dependency>
 			<groupId>crypto</groupId>
 			<artifactId>crypto</artifactId>

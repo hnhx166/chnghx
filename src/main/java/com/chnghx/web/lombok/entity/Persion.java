@@ -18,14 +18,8 @@ import lombok.ToString;
 //@NoArgsConstructor
 @Builder
 public class Persion {
-	
 	@NonNull
 	private Integer id;
-
 	private Integer height;
-	
 	private Integer age;
-	
-
-	
 }
