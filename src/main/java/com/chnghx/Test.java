@@ -1,15 +1,6 @@
 package com.chnghx;
 
 import java.io.IOException;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Properties;
-import java.util.Set;
-
-import org.springframework.core.io.ClassPathResource;
-
-import com.chnghx.common.utils.StringUtils;
 
 public class Test {
 
@@ -25,32 +16,7 @@ public class Test {
 
 		
 		
-		ClassPathResource cp = new ClassPathResource("shiro_base_auth.properties");
-		Properties properties = new Properties();  
-		try { 
-			properties.load(cp.getInputStream());
-		} catch (IOException e) {
-//			LoggerUtils.error(getClass(),"loadfixed_auth_res.properties error!", e);
-			System.exit(0);
-		}
 		
-		Set<Object> set = properties.keySet();
-		List<Integer> keys = new LinkedList<Integer>();
-		for (Object object : set) {
-			if(!StringUtils.isBlank(object)){
-				keys.add(Integer.parseInt(object.toString()));
-			}
-		}
-		Collections.sort(keys);
-		
-		for (Integer key : keys) {
-			String value = (String) properties.get(key.toString());
-			if(value.contains("=")){
-				String varray [] = value.split("=");
-				System.out.println(value);
-				//sb.append(varray[0].trim()).append(" = ").append(varray[1].trim()).append(OTHER).append(CRLF);
-			}
-		}
 	}
 
 }

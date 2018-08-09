@@ -20,8 +20,8 @@ Appenders:
   RollingFile: # 输出到文件，超过128MB归档
   - name: ROLLING_FILE
     ignoreExceptions: false
-    fileName: ${log.path}/${project.name}.log
-    filePattern: ${log.path}/$${date:yyyy-MM}/${project.name}-%d{yyyy-MM-dd}-%i.log.gz
+    fileName: d:\\logs/chnghx.log
+    filePattern: d:\\logs/$${date:yyyy-MM}/chnghx-%d{yyyy-MM-dd}-%i.log.gz
     PatternLayout:
       pattern: '%d{yyyy-MM-dd HH:mm:ss,SSS}:%4p %t (%F:%L) - %m%n'
     Policies:
