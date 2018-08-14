@@ -147,11 +147,10 @@ eureka:
     hostname: localhost
     port: 8761
     instance-id: ${spring.application.name}:${spring.cloud.client.hostname}:${server.port}
-    prefer-ip-address: false #在注册中心url中不显示IP地址前缀
+    prefer-ip-address: true #在注册中心url中不显示IP地址前缀
   client: 
     serviceUrl: #指定服务注册中心的位置
       defaultZone: http://${eureka.instance.hostname}:${eureka.instance.port}/eureka/
       
 member: 
   login: http://www.vinuxmembers.com/open/request/pc/login.vhtml?return_url=http://org.vinux.com/open/member/login.vhtml
-  

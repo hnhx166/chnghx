@@ -304,13 +304,6 @@
 			<version>0.12.2</version>
 		</dependency>
 		<!-- web3j 导出keystore -->
-		<!-- <dependency>
-			<groupId>crypto</groupId>
-			<artifactId>crypto</artifactId>
-			<version>3.5.0</version>
-			<scope>system</scope>
-			<systemPath>${basedir}/lib/crypto-3.5.0.jar</systemPath>
-		</dependency> -->
 		<dependency>
 			<groupId>org.web3j</groupId>
 			<artifactId>core</artifactId>

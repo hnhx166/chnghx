@@ -2,6 +2,7 @@ package com.chnghx.web.web3j.controller;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
@@ -78,6 +79,9 @@ public class Web3jController {
 		// walletFile.getCrypto().setKdfparams(skp);
 
 		ECKeyPair op = Wallet.decrypt(pwd, walletFile);
+		
+		
+		
 
 		op.getPrivateKey();
 		return walletFile;
